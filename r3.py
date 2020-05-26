@@ -1,0 +1,42 @@
+
+# 讀取檔案
+def read_file(filename):	
+	lines = []
+	with open(filename, 'r', encoding = 'utf-8-sig') as f: #-sig是可以去除怪符號的編碼
+		for line in f:
+			lines.append(line.strip())
+	return lines	
+
+
+# 轉換語句
+def convert(lines):
+	for line in lines:
+		s = line.split(' ')
+		time = s[0][:5]	
+		name = s[0][5:]	
+		print('時間: ', time, '人名: ', name)
+
+
+
+
+# 寫入檔案
+def write_file(newfilename, news):
+	with open(newfilename, 'w', encoding = 'utf-8') as f:
+		for new in news:
+			f.write(new + '\n')
+
+
+
+ # 執行主程式
+def main():	
+	filename = '3.txt'
+	# newfilename = 'output.txt'
+	import os
+	if os.path.isfile(filename):
+		lines = read_file(filename)
+		convert(lines)
+		# write_file(newfilename, news)
+	else:
+		print('找不到檔案!')
+
+main()
